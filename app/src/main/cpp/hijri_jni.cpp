@@ -112,7 +112,7 @@ JNIEXPORT jobjectArray JNICALL Java_com_skanderjabouzi_jnitest_MainActivity_chrT
     jobjectArray ret;
     char buf[64];
     sprintf(buf,"%d", res[0]);
-    ret = (jobjectArray)env->NewObjectArray(4,env->FindClass("java/lang/String"),env->NewStringUTF(buf));
+    ret = (jobjectArray)env->NewObjectArray(3,env->FindClass("java/lang/String"),env->NewStringUTF(buf));
     env->SetObjectArrayElement(ret,1,env->NewStringUTF(months[res[1]-1]));
 
     sprintf(buf,"%d", res[2]);
