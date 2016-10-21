@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        String[] ret = isToString(2010, 10, 20, 0);
+        String[] ret = isToString(2016, 10, 20, 0);
         tv.setText(Arrays.toString(ret) + "\n\n");
         String[] ret2 = chrToString(1438, 01, 19, 0);
         tv.append(Arrays.toString(ret2));
