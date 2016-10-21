@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        String[] ret = isToString(2006, 10, 20, 0);
-        tv.setText(Arrays.toString(ret));
+        String[] ret = isToString(2010, 10, 20, 0);
+        tv.setText(Arrays.toString(ret) + "\n\n");
+        String[] ret2 = chrToString(1438, 01, 19, 0);
+        tv.append(Arrays.toString(ret2));
     }
 
     @Override
@@ -67,4 +69,5 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String[] isToString(int y, int m, int d, int diff);
+    public native String[] chrToString(int y, int m, int d, int diff);
 }
