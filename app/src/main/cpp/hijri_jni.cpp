@@ -1,7 +1,5 @@
 #include <cmath>
-#include <stdlib.h>
 #include <string>
-#include <vector>
 #include "hijri_jni.h"
 
 
@@ -86,7 +84,6 @@ JNIEXPORT jobjectArray JNICALL Java_com_skanderjabouzi_jnitest_MainActivity_isTo
 {
     const char* months[] = {"Muharram","Safar","Rabi-al Awwal","Rabi-al Thani","Jumada al-Ula","Jumada al-Thani","Rajab","Sha\'ban","Ramadhan","Shawwal","Dhul Qa\'dah","Dhul Hijjah"};
     const char*  monthsH[] = {"محرّم" ,"صفر" ,"ربيع الأول" ,"ربيع الثاني"  ,"جمادى الأولى" ,"جمادى الثاني" ,"رجب" ,"شعبان" ,"رمضان" ,"شوال" ,"ذو القعدة" ,"ذو الحجة"};
-    //int * res = new int [3];
     int * res = chrToIsl(y,m,d,diff);
 
     jobjectArray ret;
@@ -107,18 +104,20 @@ JNIEXPORT jobjectArray JNICALL Java_com_skanderjabouzi_jnitest_MainActivity_isTo
 }
 
 //christian calendar to std::string
-JNIEXPORT jobjectArray JNICALL Java_com_skanderjabouzi_jnitest_MainActivity_chrToString(int y, int m, int d, int diff = 0)
+JNIEXPORT jobjectArray JNICALL Java_com_skanderjabouzi_jnitest_MainActivity_chrToString(JNIEnv * env, jobject, int y, int m, int d, int diff = 0)
 {
-    /*const char* months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
-    //int * res = new int [3];
+    const char* months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+
     int * res = islToChr(y,m,d,diff);
-    std::vector<std::string> ress;
-    std::ostringstream ss;
-    ss << res[0];
-    ress.push_back(ss.str());
-    ress.push_back(months[res[1]-1]);
-    ss << res[2];
-    ress.push_back(ss.str());
+    jobjectArray ret;
+    char buf[64];
+    sprintf(buf,"%d", res[0]);
+    ret = (jobjectArray)env->NewObjectArray(4,env->FindClass("java/lang/String"),env->NewStringUTF(buf));
+    env->SetObjectArrayElement(ret,1,env->NewStringUTF(months[res[1]-1]));
+
+    sprintf(buf,"%d", res[2]);
+    env->SetObjectArrayElement(ret,2,env->NewStringUTF(buf));
+
     delete[] res;
-    return ress;*/
+    return ret;
 }
